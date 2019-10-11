@@ -17,10 +17,10 @@ class Http
      * @param string $url // 请求地址
      * @param array $data // 数据
      * @param array $headers // 请求头
-     * @param array $cookies // cookie
+     * @param string $dataType // 数据格式
      * @return mixed
      */
-    public static function post($url, $data, $headers=[], $cookies=[])
+    public static function post($url, $data, $headers=[], $dataType='')
     {
         try{
             $ch = curl_init();
@@ -31,15 +31,22 @@ class Http
             curl_setopt($ch, CURLOPT_POST, true);
             curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
             curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+            if ($headers) {
+                curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+            }
 
             // 数据格式
-            if (is_array($data) && 0 < count($data)) {
-                $postBodyString = '';
-                foreach ($data as $k => $v) {
-                    $postBodyString .= $k.'=' . urlencode($v) . '&';
+            if ($dataType=='json') {
+                curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
+            } else {
+                if (is_array($data) && 0 < count($data)) {
+                    $postBodyString = '';
+                    foreach ($data as $k => $v) {
+                        $postBodyString .= $k.'=' . urlencode($v) . '&';
+                    }
+                    unset($k, $v);
+                    curl_setopt($ch, CURLOPT_POSTFIELDS, substr($postBodyString,0,-1));
                 }
-                unset($k, $v);
-                curl_setopt($ch, CURLOPT_POSTFIELDS, substr($postBodyString,0,-1));
             }
 
             $resp = curl_exec($ch);
