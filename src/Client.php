@@ -89,17 +89,18 @@ class Client
      */
     public function execute()
     {
-        $params = array_merge([
+        $sysParams = [
             'type'      => $this->request->method,
             'client_id' => $this->appKey,
             'timestamp' => (string)time(),
             'data_type' => $this->format,
             'version'   => $this->version,
-        ], $this->request->getParams());
+        ];
+        if ($this->accessToken)
+            $sysParams['access_token'] = $this->accessToken;
+        $params = array_merge($sysParams, $this->request->getParams());
 
         $params['sign'] = Signer::make($params, $this->appSecret);
-        if ($this->accessToken)
-            $params['access_token'] = $this->accessToken;
 
         if (strtolower($this->request->requestType)=='post') {
             $result = Http::post($this->gateway, $params);
