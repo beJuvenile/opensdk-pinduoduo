@@ -2,28 +2,31 @@
 /**
  * Created by PhpStorm.
  * User: Ken.Zhang
- * Date: 2019/9/23
+ * Date: 2020/06/27
  * Time: 11:46
  */
 require '../vendor/autoload.php';
 
-use OpenSDK\PinDuoDuo\Client;
-use OpenSDK\PinDuoDuo\Requests\PddPopAuthTokenRefreshRequest;
+use OpenSDK\PinDuoDuo\OauthClient;
+use OpenSDK\PinDuoDuo\Requests\Oauth\MmsOauthLinkRequest;
 
-class RefreshTokenTest
+class MmsOauthLinkTest
 {
 
     private $appKey = '5843784df8914b8fb97972a25cf43';
 
-    private $appSecret = 'abdd2dbfd848c0e0834e6a7ff3651a7b6';
+    private $appSecret = 'abdd2dbfd848c0e0834e6a7ff3651a7b';
 
     public function __invoke()
     {
-        $c = new Client();
+        $c = new OauthClient();
         $c->appKey = $this->appKey;
         $c->appSecret = $this->appSecret;
-        $req = new PddPopAuthTokenRefreshRequest();
-        $req->setRefreshToken('7bece10bb889490980f1b17f707a2073dd489c1f');
+        $req = new MmsOauthLinkRequest();
+        $req->setResponseType('code');
+        $req->setRedirectUri("https://www.baidu.com");
+        $req->setState("3333");
+        $req->setView("h5");
         $c->setRequest($req);
         $result = $c->execute();
 
@@ -32,7 +35,7 @@ class RefreshTokenTest
 
 }
 
-(new RefreshTokenTest())();
+(new MmsOauthLinkTest())();
 
 
 
