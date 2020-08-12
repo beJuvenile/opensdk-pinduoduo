@@ -61,7 +61,6 @@ class Http
 
             return $resp;
         }catch (\Exception $e) {
-            echo $e->getMessage();
             return null;
         }
     }
@@ -101,7 +100,6 @@ class Http
 
             return $resp;
         }catch (\Exception $e) {
-            echo $e->getMessage();
             return null;
         }
     }
