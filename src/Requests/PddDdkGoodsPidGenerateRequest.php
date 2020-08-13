@@ -44,8 +44,8 @@ class PddDdkGoodsPidGenerateRequest implements Request
 
     public function setPidNameList($val)
     {
-        $this->p_id_name_list = @json_encode($val);
-        $this->apiParams['p_id_name_list'] = @json_encode($val);
+        $this->p_id_name_list = $val;
+        $this->apiParams['p_id_name_list'] = $val;
     }
 
     /**

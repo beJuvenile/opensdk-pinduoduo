@@ -47,10 +47,10 @@ class PddDdkWeappQrcodeUrlGenRequest implements Request
         $this->apiParams['p_id'] = (string)$val;
     }
 
-    public function setGoodsIdList($val)
+    public function setGoodsIdList(string $val)
     {
-        $this->goods_id_list = @json_encode($val);
-        $this->apiParams['goods_id_list'] = @json_encode($val);
+        $this->goods_id_list = $val;
+        $this->apiParams['goods_id_list'] = $val;
     }
 
     public function setCustomParameters($val)

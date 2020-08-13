@@ -36,8 +36,8 @@ class PddDdkGoodsBasicInfoGetRequest implements Request
 
     public function setGoodsIdList($val)
     {
-        $this->goods_id_list = @json_encode($val);
-        $this->apiParams['goods_id_list'] = @json_encode($val);
+        $this->goods_id_list = $val;
+        $this->apiParams['goods_id_list'] = $val;
     }
 
     /**

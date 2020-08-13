@@ -61,10 +61,10 @@ class PddDdkRpPromUrlGenerateRequest implements Request
         $this->apiParams['generate_short_url'] = (bool)$val;
     }
 
-    public function setPidList($val)
+    public function setPidList(string $val)
     {
-        $this->p_id_list = @json_encode($val);
-        $this->apiParams['p_id_list'] = @json_encode($val);
+        $this->p_id_list = $val;
+        $this->apiParams['p_id_list'] = $val;
     }
 
     public function setCustomParameters($val)
@@ -103,16 +103,16 @@ class PddDdkRpPromUrlGenerateRequest implements Request
         $this->apiParams['channel_type'] = (int)$val;
     }
 
-    public function setDiyLotteryParam(array $val)
+    public function setDiyLotteryParam(string $val)
     {
-        $this->diy_lottery_param = @json_encode($val);
-        $this->apiParams['diy_lottery_param'] = @json_encode($val);
+        $this->diy_lottery_param = $val;
+        $this->apiParams['diy_lottery_param'] = $val;
     }
 
-    public function setDiyRedPacketParam(array $val)
+    public function setDiyRedPacketParam(string $val)
     {
-        $this->diy_red_packet_param = @json_encode($val);
-        $this->apiParams['diy_red_packet_param'] = @json_encode($val);
+        $this->diy_red_packet_param = $val;
+        $this->apiParams['diy_red_packet_param'] = $val;
     }
 
     public function setGenerateQqApp(bool $val)

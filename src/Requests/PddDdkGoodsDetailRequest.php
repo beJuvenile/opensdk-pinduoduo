@@ -45,8 +45,8 @@ class PddDdkGoodsDetailRequest implements Request
 
     public function seGoodsIdList(array $val)
     {
-        $this->goods_id_list = @json_encode($val);
-        $this->apiParams['goods_id_list'] = @json_encode($val);
+        $this->goods_id_list = $val;
+        $this->apiParams['goods_id_list'] = $val;
     }
 
     public function setPid($val)

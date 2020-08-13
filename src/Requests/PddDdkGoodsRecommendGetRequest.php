@@ -91,10 +91,10 @@ class PddDdkGoodsRecommendGetRequest implements Request
         $this->apiParams['cat_id'] = $val;
     }
 
-    public function setGoodsIds(array $val)
+    public function setGoodsIds(string $val)
     {
-        $this->goods_ids = @json_encode($val);
-        $this->apiParams['goods_ids'] = @json_encode($val);
+        $this->goods_ids = $val;
+        $this->apiParams['goods_ids'] = $val;
     }
 
     /**

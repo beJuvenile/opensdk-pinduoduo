@@ -49,10 +49,10 @@ class PddDdkOauthGoodsPidQueryRequest implements Request
         $this->apiParams['page_size'] = (int)$val;
     }
 
-    public function setPidList($val)
+    public function setPidList(string $val)
     {
-        $this->pid_list = @json_encode($val);
-        $this->apiParams['pid_list'] = @json_encode($val);
+        $this->pid_list = $val;
+        $this->apiParams['pid_list'] = $val;
     }
 
     /**

@@ -9,12 +9,12 @@
 require 'vendor/autoload.php';
 
 use OpenSDK\PinDuoDuo\Client;
-use OpenSDK\PinDuoDuo\Requests\DdkCmsPromUrlGenerateRequest;
+use OpenSDK\PinDuoDuo\Requests\PddDdkCmsPromUrlGenerateRequest;
 
 $c = new Client();
 $c->appKey = 'You are appKey';
 $c->appSecret = 'You are appSecret';
-$req = new DdkCmsPromUrlGenerateRequest();
+$req = new PddDdkCmsPromUrlGenerateRequest();
 $req->setWeAppWebViewShortUrl(true);
 $req->setWeAppWebViewUrl(true);
 $req->setPidList(['xxxx_xxxxx']);

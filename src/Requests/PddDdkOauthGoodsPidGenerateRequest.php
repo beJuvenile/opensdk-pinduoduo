@@ -42,10 +42,10 @@ class PddDdkOauthGoodsPidGenerateRequest implements Request
         $this->apiParams['number'] = (int)$val;
     }
 
-    public function setPidNameList($val)
+    public function setPidNameList(string $val)
     {
-        $this->p_id_name_list = @json_encode($val);
-        $this->apiParams['p_id_name_list'] = @json_encode($val);
+        $this->p_id_name_list = $val;
+        $this->apiParams['p_id_name_list'] = $val;
     }
 
     /**

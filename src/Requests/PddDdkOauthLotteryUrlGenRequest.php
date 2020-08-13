@@ -45,10 +45,10 @@ class PddDdkOauthLotteryUrlGenRequest implements Request
     private $apiParams = [];
 
 
-    public function setPidList($val)
+    public function setPidList(string $val)
     {
-        $this->pid_list = @json_encode($val);
-        $this->apiParams['pid_list'] = @json_encode($val);
+        $this->pid_list = $val;
+        $this->apiParams['pid_list'] = $val;
     }
 
     public function setGenerateWeappWebview($val)

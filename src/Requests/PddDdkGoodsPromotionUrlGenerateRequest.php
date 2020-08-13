@@ -72,10 +72,10 @@ class PddDdkGoodsPromotionUrlGenerateRequest implements Request
         $this->apiParams['p_id'] = (string)$val;
     }
 
-    public function setGoodsIdList($val)
+    public function setGoodsIdList(string $val)
     {
-        $this->goods_id_list = @json_encode($val);
-        $this->apiParams['goods_id_list'] = @json_encode($val);
+        $this->goods_id_list = $val;
+        $this->apiParams['goods_id_list'] = $val;
     }
 
     public function setGenerateShortUrl($val)
@@ -144,16 +144,16 @@ class PddDdkGoodsPromotionUrlGenerateRequest implements Request
         $this->apiParams['search_id'] = $val;
     }
 
-    public function setRoomIdList(array $val)
+    public function setRoomIdList(string $val)
     {
-        $this->room_id_list = @json_encode($val);
-        $this->apiParams['room_id_list'] = @json_encode($val);
+        $this->room_id_list = $val;
+        $this->apiParams['room_id_list'] = $val;
     }
 
-    public function setTargetIdList(array $val)
+    public function setTargetIdList(string $val)
     {
-        $this->target_id_list = @json_encode($val);
-        $this->apiParams['target_id_list'] = @json_encode($val);
+        $this->target_id_list = $val;
+        $this->apiParams['target_id_list'] = $val;
     }
 
     public function setGenerateAuthorityUrl(bool $val)

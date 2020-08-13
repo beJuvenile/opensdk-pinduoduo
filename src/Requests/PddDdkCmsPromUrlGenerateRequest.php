@@ -99,8 +99,8 @@ class PddDdkCmsPromUrlGenerateRequest implements Request
 
     public function setPidList($val)
     {
-        $this->p_id_list = @json_encode($val);
-        $this->apiParams['p_id_list'] = @json_encode($val);
+        $this->p_id_list = $val;
+        $this->apiParams['p_id_list'] = $val;
     }
 
     /**

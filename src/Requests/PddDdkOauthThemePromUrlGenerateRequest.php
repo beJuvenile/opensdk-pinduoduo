@@ -53,10 +53,10 @@ class PddDdkOauthThemePromUrlGenerateRequest implements Request
         $this->apiParams['pid'] = (string)$val;
     }
 
-    public function setThemeIdList($val)
+    public function setThemeIdList(string $val)
     {
-        $this->theme_id_list = @json_encode($val);
-        $this->apiParams['theme_id_list'] = @json_encode($val);
+        $this->theme_id_list = $val;
+        $this->apiParams['theme_id_list'] = $val;
     }
 
     public function setGenerateShortUrl($val)

@@ -105,10 +105,10 @@ class PddDdkGoodsSearchRequest implements Request
         $this->apiParams['with_coupon'] = (bool)$val;
     }
 
-    public function setRangeList(array $val)
+    public function setRangeList(string $val)
     {
-        $this->range_list = @json_encode($val);
-        $this->apiParams['range_list'] = @json_encode($val);
+        $this->range_list = $val;
+        $this->apiParams['range_list'] = $val;
     }
 
     public function setCatId($val)
@@ -117,10 +117,10 @@ class PddDdkGoodsSearchRequest implements Request
         $this->apiParams['cat_id'] = (int)$val;
     }
 
-    public function setGoodsIdList(array $val)
+    public function setGoodsIdList(string $val)
     {
-        $this->goods_id_list = @json_encode($val);
-        $this->apiParams['goods_id_list'] = @json_encode($val);
+        $this->goods_id_list = $val;
+        $this->apiParams['goods_id_list'] = $val;
     }
 
     public function setMerchantType($val)
@@ -141,10 +141,10 @@ class PddDdkGoodsSearchRequest implements Request
         $this->apiParams['custom_parameters'] = (string)$val;
     }
 
-    public function setMerchantTypeList(array $val)
+    public function setMerchantTypeList(string $val)
     {
-        $this->merchant_type_list = @json_encode($val);
-        $this->apiParams['merchant_type_list'] = @json_encode($val);
+        $this->merchant_type_list = $val;
+        $this->apiParams['merchant_type_list'] = $val;
     }
 
     public function setIsBrandGoods($val)

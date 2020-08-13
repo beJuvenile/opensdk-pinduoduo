@@ -74,16 +74,16 @@ class PddDdkMerchantListGetRequest implements Request
         $this->apiParams['has_coupon'] = (int)$val;
     }
 
-    public function setMallIdList($val)
+    public function setMallIdList(string $val)
     {
-        $this->mall_id_list = @json_encode($val);
-        $this->apiParams['mall_id_list'] = @json_encode($val);
+        $this->mall_id_list = $val;
+        $this->apiParams['mall_id_list'] = $val;
     }
 
     public function setMerchantTypeList($val)
     {
-        $this->merchant_type_list = @json_encode($val);
-        $this->apiParams['merchant_type_list'] = @json_encode($val);
+        $this->merchant_type_list = $val;
+        $this->apiParams['merchant_type_list'] = $val;
     }
 
     public function setPageNumber($val)

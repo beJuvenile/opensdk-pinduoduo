@@ -53,10 +53,10 @@ class PddDdkOauthRpPromUrlGenerateRequest implements Request
         $this->apiParams['generate_short_url'] = (bool)$val;
     }
 
-    public function setPidList($val)
+    public function setPidList(string $val)
     {
-        $this->p_id_list = @json_encode($val);
-        $this->apiParams['p_id_list'] = @json_encode($val);
+        $this->p_id_list = $val;
+        $this->apiParams['p_id_list'] = $val;
     }
 
     public function setCustomParameters($val)
