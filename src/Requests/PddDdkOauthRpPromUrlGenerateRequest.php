@@ -9,7 +9,9 @@
  */
 namespace OpenSDK\PinDuoDuo\Requests;
 
+
 use OpenSDK\PinDuoDuo\Interfaces\Request;
+
 
 class PddDdkOauthRpPromUrlGenerateRequest implements Request
 {
@@ -42,7 +44,15 @@ class PddDdkOauthRpPromUrlGenerateRequest implements Request
 
     private $generate_we_app; // 是否生成小程序推广
 
-    private $channel_type; // CPA新人红包，0-默认红包，2 – 新人红包，默认0
+    private $channel_type; // -1-活动列表，0-默认红包，2–新人红包，3-刮刮卡，4-转盘 ，5-员工内购，6-购物车，7-大促会场
+
+    private $diy_lottery_param; // 转盘自定义参数
+
+    private $diy_red_packet_param; // 红包自定义参数
+
+    private $generate_qq_app; // 是否生成qq小程序
+
+    private $generate_schema_url; // 是否返回 schema URL
 
     private $apiParams = [];
 
@@ -93,6 +103,30 @@ class PddDdkOauthRpPromUrlGenerateRequest implements Request
     {
         $this->channel_type = (int)$val;
         $this->apiParams['channel_type'] = (int)$val;
+    }
+
+    public function setDiyLotteryParam(string $val)
+    {
+        $this->diy_lottery_param = $val;
+        $this->apiParams['diy_lottery_param'] = $val;
+    }
+
+    public function setDiyRedPacketParam(string $val)
+    {
+        $this->diy_red_packet_param = $val;
+        $this->apiParams['diy_red_packet_param'] = $val;
+    }
+
+    public function setGenerateQqApp(bool $val)
+    {
+        $this->generate_qq_app = $val;
+        $this->apiParams['generate_qq_app'] = $val;
+    }
+
+    public function setGenerateSchemaUrl(bool $val)
+    {
+        $this->generate_schema_url = $val;
+        $this->apiParams['generate_schema_url'] = $val;
     }
 
     /**
