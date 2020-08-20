@@ -43,7 +43,7 @@ class PddDdkGoodsDetailRequest implements Request
     private $apiParams = [];
 
 
-    public function seGoodsIdList(array $val)
+    public function setGoodsIdList(string $val)
     {
         $this->goods_id_list = $val;
         $this->apiParams['goods_id_list'] = $val;
