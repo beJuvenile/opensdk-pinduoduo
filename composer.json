@@ -10,8 +10,6 @@
             "email": "kenphp@yeah.net"
         }
     ],
-    "minimum-stability": "stable",
-    "version": "v2.0.4",
     "require": {
         "php": ">=7.0.0",
         "ext-curl": "*",
