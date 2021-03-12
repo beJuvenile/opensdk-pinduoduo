@@ -28,25 +28,15 @@ class PddDdkOauthGoodsPromUrlGenerateRequest implements Request
      */
     public $requestType = 'post';
 
-    private $p_id; // 推广位ID
+    private $cash_gift_id; // 多多礼金ID
 
-    private $goods_id_list; // 商品ID，仅支持单个查询
-
-    private $generate_short_url; // 是否生成短链接，true-是，false-否
-
-    private $multi_group; // true--生成多人团推广链接 false--生成单人团推广链接（默认false）
-                          // 1、单人团推广链接：用户访问单人团推广链接，可直接购买商品无需拼团。
-                          // 2、多人团推广链接：用户访问双人团推广链接开团，若用户分享给他人参团，则开团者和参团者的佣金均结算给推手
+    private $cash_gift_name; // 自定义礼金标题，用于向用户展示渠道专属福利，不超过12个字
 
     private $custom_parameters; // 自定义参数，为链接打上自定义标签。自定义参数最长限制64个字节
 
-    private $generate_weapp_webview; // 是否生成唤起微信客户端链接，true-是，false-否，默认false
+    private $force_duo_id; // 是否使用多多客专属推广计划
 
-    private $zs_duo_id; // 招商多多客ID
-
-    private $generate_we_app; // 是否生成小程序推广
-
-    private $generate_weiboapp_webview; // 是否生成微博推广链接
+    private $generate_authority_url; // 是否生成带授权的单品链接。如果未授权，则会走授权流程
 
     private $generate_mall_collect_coupon; // 是否生成店铺收藏券推广链接
 
@@ -54,38 +44,36 @@ class PddDdkOauthGoodsPromUrlGenerateRequest implements Request
 
     private $generate_schema_url; // 是否返回 schema URL
 
+    private $generate_short_url; // 是否生成短链接，true-是，false-否
+
+    private $generate_we_app; // 是否生成小程序推广
+
+    private $goods_sign_list; // 商品goodsSign列表，支持批量生链。goodsSign是加密后的goodsId, goodsId已下线，请使用goodsSign来替代。
+                                // 使用说明：https://jinbao.pinduoduo.com/qa-system?questionId=252
+
+    private $multi_group; // true--生成多人团推广链接 false--生成单人团推广链接（默认false）
+                            // 1、单人团推广链接：用户访问单人团推广链接，可直接购买商品无需拼团。
+                          // 2、多人团推广链接：用户访问双人团推广链接开团，若用户分享给他人参团，则开团者和参团者的佣金均结算给推手
+
+    private $p_id; // 推广位ID
+
     private $search_id; // 搜索id，建议填写，提高收益。来自pdd.ddk.goods.recommend.get、pdd.ddk.goods.search、pdd.ddk.top.goods.list.query等接口
 
-    private $force_duo_id; // 是否使用多多客专属推广计划
-
-    private $generate_authority_url; // 是否生成带授权的单品链接。如果未授权，则会走授权流程
+    private $zs_duo_id; // 招商多多客ID
 
     private $apiParams = [];
 
 
-
-    public function setPid($val)
+    public function setCashGiftId($val)
     {
-        $this->p_id = (string)$val;
-        $this->apiParams['p_id'] = (string)$val;
+        $this->cash_gift_id = $val;
+        $this->apiParams['cash_gift_id'] = $val;
     }
 
-    public function setGoodsIdList(string $val)
+    public function setCashGiftName($val)
     {
-        $this->goods_id_list = $val;
-        $this->apiParams['goods_id_list'] = $val;
-    }
-
-    public function setGenerateShortUrl($val)
-    {
-        $this->generate_short_url = (bool)$val;
-        $this->apiParams['generate_short_url'] = (bool)$val;
-    }
-
-    public function setMultiGroup($val)
-    {
-        $this->multi_group = (bool)$val;
-        $this->apiParams['multi_group'] = (bool)$val;
+        $this->cash_gift_name = $val;
+        $this->apiParams['cash_gift_name'] = $val;
     }
 
     public function setCustomParameters($val)
@@ -94,28 +82,16 @@ class PddDdkOauthGoodsPromUrlGenerateRequest implements Request
         $this->apiParams['custom_parameters'] = (string)$val;
     }
 
-    public function setGenerateWeappWebview($val)
+    public function setForceDuoId(bool $val)
     {
-        $this->generate_weapp_webview = (bool)$val;
-        $this->apiParams['generate_weapp_webview'] = (bool)$val;
+        $this->force_duo_id = $val;
+        $this->apiParams['force_duo_id'] = $val;
     }
 
-    public function setZsDuoId($val)
+    public function setGenerateAuthorityUrl(bool $val)
     {
-        $this->zs_duo_id = (int)$val;
-        $this->apiParams['zs_duo_id'] = (int)$val;
-    }
-
-    public function setGenerateWeApp($val)
-    {
-        $this->generate_we_app = (bool)$val;
-        $this->apiParams['generate_we_app'] = (bool)$val;
-    }
-
-    public function setGenerateWeiboappWebview($val)
-    {
-        $this->generate_weiboapp_webview = (bool)$val;
-        $this->apiParams['generate_weiboapp_webview'] = (bool)$val;
+        $this->generate_authority_url = $val;
+        $this->apiParams['generate_authority_url'] = $val;
     }
 
     public function setGenerateMallCollectCoupon(bool $val)
@@ -136,22 +112,46 @@ class PddDdkOauthGoodsPromUrlGenerateRequest implements Request
         $this->apiParams['generate_schema_url'] = $val;
     }
 
+    public function setGenerateShortUrl($val)
+    {
+        $this->generate_short_url = (bool)$val;
+        $this->apiParams['generate_short_url'] = (bool)$val;
+    }
+
+    public function setGenerateWeApp($val)
+    {
+        $this->generate_we_app = (bool)$val;
+        $this->apiParams['generate_we_app'] = (bool)$val;
+    }
+
+    public function setGoodsSignList($val)
+    {
+        $this->goods_sign_list = $val;
+        $this->apiParams['goods_sign_list'] = $val;
+    }
+
+    public function setMultiGroup($val)
+    {
+        $this->multi_group = (bool)$val;
+        $this->apiParams['multi_group'] = (bool)$val;
+    }
+
+    public function setPid($val)
+    {
+        $this->p_id = (string)$val;
+        $this->apiParams['p_id'] = (string)$val;
+    }
+
     public function setSearchId(string $val)
     {
         $this->search_id = $val;
         $this->apiParams['search_id'] = $val;
     }
 
-    public function setForceDuoId(bool $val)
+    public function setZsDuoId($val)
     {
-        $this->force_duo_id = $val;
-        $this->apiParams['force_duo_id'] = $val;
-    }
-
-    public function setGenerateAuthorityUrl(bool $val)
-    {
-        $this->generate_authority_url = $val;
-        $this->apiParams['generate_authority_url'] = $val;
+        $this->zs_duo_id = (int)$val;
+        $this->apiParams['zs_duo_id'] = (int)$val;
     }
 
     /**
